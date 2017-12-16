@@ -14,12 +14,38 @@ var genereSchema = mongoose.Schema({
 
 var Genere = module.exports = mongoose.model('Geners', genereSchema);
 
-//Get Geners
+/**
+ * Get Geners
+ * 
+ * @param {Function} callback 
+ * @param {Integer} limit 
+ */
 module.exports.getGeners = function(callback, limit) {
     Genere.find(callback).limit(limit);
 }
 
-//add Genere
+/**
+ * Add a Genere
+ * 
+ * @param {Object} genere 
+ * @param {Function} callback 
+ */
 module.exports.addGenere = function(genere, callback) {
     Genere.create(genere, callback)
+}
+
+/**
+ * Update a Genere
+ * 
+ * @param {Integer} id 
+ * @param {Object} genere 
+ * @param {Object} options 
+ * @param {Function} callback 
+ */
+module.exports.updateGenere = function(id, genere, options, callback) {
+    var query = {_id: id };
+    var update = {
+        name: genere.name
+    }
+    Genere.findOneAndUpdate(query, update, options, callback)
 }
