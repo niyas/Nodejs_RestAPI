@@ -37,7 +37,7 @@ module.exports.addGenere = function(genere, callback) {
 /**
  * Update a Genere
  * 
- * @param {Integer} id 
+ * @param {String} id 
  * @param {Object} genere 
  * @param {Object} options 
  * @param {Function} callback 
@@ -48,4 +48,15 @@ module.exports.updateGenere = function(id, genere, options, callback) {
         name: genere.name
     }
     Genere.findOneAndUpdate(query, update, options, callback)
+}
+
+/**
+ * Delete a genere
+ * 
+ * @param {String} id 
+ * @param {Function} callback 
+ */
+module.exports.deleteGenere = function(id, callback) {
+    var query = { _id: id };
+    Genere.remove(query, callback);
 }

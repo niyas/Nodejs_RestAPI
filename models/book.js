@@ -48,7 +48,7 @@ module.exports.getBooks = function(callback, limit) {
 /**
  * Get a book by Id
  * 
- * @param {Integer} id 
+ * @param {String} id 
  * @param {Function} callback 
  */
 module.exports.getBookById = function(id, callback) {
@@ -69,7 +69,7 @@ module.exports.addBook = function(book, callback) {
 /**
  * Update a book
  * 
- * @param {Integer} id 
+ * @param {String} id 
  * @param {Object} book 
  * @param {Object} options 
  * @param {Object} callback 
@@ -87,4 +87,16 @@ module.exports.updateBook = function(id, book, options, callback) {
         buy: book.buy
     }
     Book.findOneAndUpdate(query, update, options, callback);
+}
+
+
+/**
+ * Delete a book
+ * 
+ * @param {String} id 
+ * @param {Function} callback 
+ */
+module.exports.deleteBook = function(id, callback) {
+    var query = {_id: id};
+    Book.remove(query, callback);
 }
